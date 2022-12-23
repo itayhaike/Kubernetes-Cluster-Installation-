@@ -1,10 +1,12 @@
 #!/bin/bash
 echo "Important!!!!!!"
 sleep 1
-echo "!!!Make sure you edit the file: 'sudo visudo' by this template: $(whoami) ALL=(ALL) NOPASSWD:ALL !!!"
-sleep 2
+echo "!!!Make sure you edit the file: 'sudo visudo' by this template: $(whoami) ALL=(ALL) NOPASSWD:ALL !!!\n and group:"
+' %sudo  ALL=(ALL:ALL) NOPASSWD:ALL '
+sleep 4
 sudo nano /etc/sudoers
 sleep 2
+
 
 sudo kubeadm reset --cri-socket=/var/run/cri-dockerd.sock
 
