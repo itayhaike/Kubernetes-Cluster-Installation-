@@ -1,6 +1,8 @@
 #!/bin/bash
 echo "K8s cluster instalation continue..."
-sudo su
+
+sleep 2
+
 git clone https://github.com/Mirantis/cri-dockerd.git
 
 wget https://storage.googleapis.com/golang/getgo/installer_linux
@@ -23,11 +25,11 @@ install -o root -g root -m 0755 bin/cri-dockerd /usr/local/bin/cri-dockerd
 
 cp -a packaging/systemd/* /etc/systemd/system sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
 
-systemctl daemon-reload
+sudo systemctl daemon-reload
 
-systemctl enable cri-docker.service
+sudo systemctl enable cri-docker.service
 
-systemctl enable --now cri-docker.socket
+sudo systemctl enable --now cri-docker.socket
 
 sudo apt update
 
@@ -52,12 +54,19 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
 
-choice = read "You Want to work only in this cluster node?: y/n "
-if [choice="y"]; than
-    kubectl taint nodes --all node-role.kubernetes.io/control-plane-
-elif [choice="n"]; than
-    echo "Please enter your kubeadm join from the worker "
-else
-    echo "!!! Wrong input Enter y/n only !!!"
-    
+echo -e "You Want to work only in this cluster node?\n do this command:\n ' kubectl taint nodes --all node-role.kubernetes.io/control-plane- '
+ "
+sleep 2
+echo "If you want to add worker nodes Please enter your kubeadm join from the worker "
+sleep 2
+echo "asliass:"
+echo "you can do it in .bashrc file"
 
+echo '''
+alias kp='kubectl get pods'
+alias kd='kubectl get deployment'
+alias k='kubectl'
+alias ka='kubectl get all'
+alias ks='kubectl get service'
+alias d='docker'
+'''
