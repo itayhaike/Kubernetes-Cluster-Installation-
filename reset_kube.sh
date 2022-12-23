@@ -1,4 +1,10 @@
 #!/bin/bash
+echo "Important!!!!!!"
+sleep 1
+echo "!!!Make sure you edit the file: 'sudo visudo' by this template: $(whoami) ALL=(ALL) NOPASSWD:ALL !!!"
+sleep 2
+sudo nano /etc/sudoers
+sleep 2
 
 sudo kubeadm reset --cri-socket=/var/run/cri-dockerd.sock
 
@@ -16,4 +22,4 @@ kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Doc
 
 sleep 1
 
-kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+#kubectl taint nodes --all node-role.kubernetes.io/control-plane-
