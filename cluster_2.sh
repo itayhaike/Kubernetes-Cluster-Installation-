@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "K8s cluster instalation continue..."
 sudo su
 git clone https://github.com/Mirantis/cri-dockerd.git
 
