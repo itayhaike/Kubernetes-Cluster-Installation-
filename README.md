@@ -8,7 +8,7 @@ Follow all the instarctions in the script
 
 The pc Will reboot
 
-After Reboot Run the script: cluster_2.sh
+After Reboot, Run the script: cluster_2.sh
 # $bash cluster_2.sh
 
 And all done
